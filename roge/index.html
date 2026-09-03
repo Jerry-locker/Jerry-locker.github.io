@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation">
+    <meta name="keywords" content="Novel View Synthesis, Video Diffusion, Implicit Reconstruction, Sparse Views">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/Jerry-locker" target="_blank">Xiaolei Lang</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  Ze Kang<sup>2</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=zXqeKPgAAAAJ&hl=zh-CN&oi=ao" target="_blank">Zehao Huang</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=yAWtq6QAAAAJ&hl=zh-CN&oi=ao" target="_blank">Naiyan Wang</a><sup>1</sup>
+                </span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Xiaomi EV,</span>
+                <span class="author-block"><sup>2</sup>Northeastern University</span>
+              </div>
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/pdf/2609.02847"
+                      class="external-link button is-normal is-rounded is-dark" target="_blank">
+                      <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2609.02847"
+                      class="external-link button is-normal is-rounded is-dark" target="_blank">
+                      <span class="icon"><i class="ai ai-arxiv"></i></span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/Jerry-locker/RoGe"
+                      class="external-link button is-normal is-rounded is-dark" target="_blank">
+                      <span class="icon"><i class="fab fa-github"></i></span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Novel view synthesis from sparse inputs requires both geometric grounding from the observed views
+                and generative priors of unobserved regions, motivating recent hybrid methods that combine
+                reconstruction and generation. However, existing methods bridge the two with rendered images or
+                explicit 3D representations such as point maps or 3D Gaussians. Generation is thus conditioned on
+                a lossy and imperfect projection of the scene, inheriting its errors, and reconstruction receives
+                no signal from generation to correct them. We present RoGe, an end-to-end unified reconstruction
+                and generation framework that removes this explicit bridge. It targets roaming within a scene
+                anchored by sparse views: given a few posed images and a camera trajectory, it synthesizes a
+                temporally coherent video along that trajectory. From the sparse input views, RoGe builds an
+                implicit scene representation with a feed-forward reconstruction model, and queries it with target
+                camera rays to obtain per-view geometric features. These features are injected into a video
+                diffusion model as conditioning, without any 3D intermediate. Both modules are trained jointly,
+                so the generation objective directly shapes its own geometric conditioning. We conduct experiments
+                on DL3DV, where RoGe outperforms reconstruction-based, generation-based, and hybrid baselines on
+                image-level metrics and video-level temporal consistency. Ablations confirm that ray-queried
+                implicit features outperform both raw reconstruction tokens and rendered RGB as conditioning,
+                and that joint training brings further gains.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NVS Comparison on DL3DV -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3" style="margin-top: -30px">NVS Comparison on DL3DV</h2>
+            <img src="./static/images/nvs/dl3dv_comparison.png" class="center nvs-figure"
+              alt="Qualitative novel view synthesis comparison on DL3DV">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roaming in DL3DV -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3" style="margin-top: -30px">Roaming in DL3DV</h2>
+            <p class="has-text-centered" style="margin-top: -0.5rem; margin-bottom: 1.5rem; color: #666;">
+              Sparse context views (left) with target trajectories (top) and synthesized novel-view videos (bottom).
+            </p>
+
+            <!-- Scene 1 -->
+            <div class="roaming-block">
+              <span class="roaming-label">Scene 1</span>
+              <div class="roaming-panel">
+                <div class="roaming-contexts" aria-label="Sparse context views">
+                  <img src="./static/images/dl3dv1/context/1.png" alt="Context 1">
+                  <img src="./static/images/dl3dv1/context/2.png" alt="Context 2">
+                  <img src="./static/images/dl3dv1/context/3.png" alt="Context 3">
+                  <img src="./static/images/dl3dv1/context/4.png" alt="Context 4">
+                  <img src="./static/images/dl3dv1/context/5.png" alt="Context 5">
+                  <img src="./static/images/dl3dv1/context/6.png" alt="Context 6">
+                </div>
+                <div class="roaming-results">
+                  <div class="roaming-row">
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/traj1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/traj2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/traj3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div class="roaming-row">
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/video1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/video2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv1/video3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 2 -->
+            <div class="roaming-block">
+              <span class="roaming-label">Scene 2</span>
+              <div class="roaming-panel">
+                <div class="roaming-contexts" aria-label="Sparse context views">
+                  <img src="./static/images/dl3dv2/context/1.png" alt="Context 1">
+                  <img src="./static/images/dl3dv2/context/2.png" alt="Context 2">
+                  <img src="./static/images/dl3dv2/context/3.png" alt="Context 3">
+                  <img src="./static/images/dl3dv2/context/4.png" alt="Context 4">
+                  <img src="./static/images/dl3dv2/context/5.png" alt="Context 5">
+                  <img src="./static/images/dl3dv2/context/6.png" alt="Context 6">
+                </div>
+                <div class="roaming-results">
+                  <div class="roaming-row">
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/traj1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/traj2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/traj3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div class="roaming-row">
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/video1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/video2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/dl3dv2/video3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roaming in ScanNet -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3" style="margin-top: -30px">Roaming in ScanNet</h2>
+            <p class="has-text-centered" style="margin-top: -0.5rem; margin-bottom: 1.5rem; color: #666;">
+              Sparse context views (left) with target trajectories (top) and synthesized novel-view videos (bottom).
+            </p>
+
+            <div class="roaming-block">
+              <div class="roaming-panel">
+                <div class="roaming-contexts" aria-label="Sparse context views">
+                  <img src="./static/images/scannet/context/1.jpg" alt="Context 1">
+                  <img src="./static/images/scannet/context/2.jpg" alt="Context 2">
+                  <img src="./static/images/scannet/context/3.jpg" alt="Context 3">
+                  <img src="./static/images/scannet/context/4.jpg" alt="Context 4">
+                  <img src="./static/images/scannet/context/5.jpg" alt="Context 5">
+                  <img src="./static/images/scannet/context/6.jpg" alt="Context 6">
+                </div>
+                <div class="roaming-results">
+                  <div class="roaming-row">
+                    <div class="roaming-cell is-traj">
+                      <img src="./static/images/scannet/traj/traj1.png" alt="Trajectory 1">
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <img src="./static/images/scannet/traj/traj2.png" alt="Trajectory 2">
+                    </div>
+                    <div class="roaming-cell is-traj">
+                      <img src="./static/images/scannet/traj/traj3.png" alt="Trajectory 3">
+                    </div>
+                  </div>
+                  <div class="roaming-row">
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/scannet/video1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/scannet/video2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="roaming-cell">
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/videos/scannet/video3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{lang2026roge,
+  title={RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation},
+  author={Lang, Xiaolei and Kang, Ze and Huang, Zehao and Wang, Naiyan},
+  journal={arXiv preprint arXiv:2609.02847},
+  year={2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+                  Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+              <p>
+                This website template is from
+                <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+                We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and
+                open-sourcing this template.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
