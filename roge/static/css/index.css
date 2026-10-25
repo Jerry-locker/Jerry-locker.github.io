@@ -172,6 +172,59 @@ body {
   border-radius: 4px;
 }
 
+.comparison-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1.75rem;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 0.28rem 0.4rem;
+  text-align: center;
+  white-space: nowrap;
+  border-bottom: 1px solid #ececec;
+}
+
+.comparison-table thead th {
+  font-weight: 600;
+  border-bottom: 1.5px solid #222;
+}
+
+.comparison-table .method {
+  text-align: left;
+  font-weight: 500;
+}
+
+.comparison-table .group-start td {
+  border-top: 1.5px solid #222;
+}
+
+.comparison-table .best {
+  font-weight: 700;
+}
+
+.comparison-table .second {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.comparison-caption {
+  margin: 0 auto 1.6rem;
+  max-width: 920px;
+  color: #444;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 @media screen and (max-width: 768px) {
   .roaming-panel {
     flex-direction: column;
