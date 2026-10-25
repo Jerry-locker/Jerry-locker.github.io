@@ -72,6 +72,9 @@ body {
 
 /* ----- Roaming layout (from teaser_video_final.pptx) ----- */
 .roaming-block {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2.75rem;
 }
 
@@ -164,7 +167,7 @@ body {
 }
 
 .nvs-figure {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 4px;
 }
