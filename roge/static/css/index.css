@@ -12,6 +12,10 @@ body {
   margin-bottom: 5px;
 }
 
+.abstract-section {
+  padding-top: 1rem;
+}
+
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;
